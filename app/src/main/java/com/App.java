@@ -1,14 +1,6 @@
 package com;
 
-import com.sequenia.di.components.DaggerApplicationComponent;
+import android.app.Application;
 
-import dagger.android.AndroidInjector;
-import dagger.android.support.DaggerApplication;
-
-public class App extends DaggerApplication {
-
-    @Override
-    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerApplicationComponent.builder().application(this).build();
-    }
+public class App extends Application {
 }

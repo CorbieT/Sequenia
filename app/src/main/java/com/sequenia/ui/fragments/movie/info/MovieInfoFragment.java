@@ -1,14 +1,17 @@
 package com.sequenia.ui.fragments.movie.info;
 
-import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.sequenia.R;
 import com.sequenia.model.response.MovieResponse;
 import com.sequenia.ui.activities.MainActivity;
@@ -21,7 +24,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 
 public class MovieInfoFragment extends BaseFragment implements MovieInfoContract.View<MovieResponse> {
 
@@ -39,8 +41,17 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
     @BindView(R.id.description)
     TextView description;
 
+    @BindView(R.id.image)
+    ImageView image;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @BindView(R.id.appbar)
+    AppBarLayout appBar;
 
     private Unbinder unbinder;
 
@@ -63,17 +74,11 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        presenter = new MovieInfoPresenter(this);
+        presenter = new MovieInfoPresenter(this);
         unbinder = ButterKnife.bind(this, view);
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
-
+        Objects.requireNonNull(((MainActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setTitle("");
         presenter.loadBundle(this.getArguments());
-
-
-//        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbarLayout.setTitle("Create Delivery Personnel");
-//        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-//        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(0, 0, 0));
     }
 
     @Override
@@ -84,10 +89,38 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
 
     @Override
     public void updatePageInfo(MovieResponse movieResponse) {
-        name.setText("" + movieResponse.getName());
-        year.setText("Год:" + movieResponse.getYear());
-        rating.setText("" + movieResponse.getRating());
-        description.setText(movieResponse.getDescription());
-        toolbar.setTitle(movieResponse.getLocalizedName());
+        presenter.loadImage(movieResponse.getImageUrl(), image);
+        name.setText(movieResponse.getName());
+        year.setText(getString(R.string.year, movieResponse.getYear()));
+        rating.setText(getString(R.string.rating, String.valueOf(movieResponse.getRating())));
+        if (movieResponse.getDescription() == null || movieResponse.getDescription().isEmpty()) {
+            description.setText(getString(R.string.empty_description));
+        } else {
+            description.setText(movieResponse.getDescription());
+        }
+
+        setupAppBar(movieResponse);
+    }
+
+    private void setupAppBar(MovieResponse movieResponse) {
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.rgb(255, 255, 255));
+        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle(movieResponse.getLocalizedName());
+
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbarLayout.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
     }
 }

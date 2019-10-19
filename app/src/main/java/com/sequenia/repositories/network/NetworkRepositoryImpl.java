@@ -13,7 +13,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NetworkRepositoryImpl implements NetworkRepository {
-//TODO add Specification
 
     @Override
     public void query(final MovieResponseCallback callback) {

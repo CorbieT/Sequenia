@@ -39,7 +39,7 @@ public class MovieListViewHolder extends BaseViewHolder<MovieResponse> {
         Picasso.get()
                 .load(movie.getImageUrl())
                 .placeholder(R.drawable.progress_animation)
-                .error(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.image_not_found)
                 .into(image);
         name.setText(movie.getName());
     }

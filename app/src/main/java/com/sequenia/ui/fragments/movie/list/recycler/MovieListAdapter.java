@@ -4,8 +4,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sequenia.common.MovieDiffUtil;
 import com.sequenia.interfaces.Consumer;
 import com.sequenia.R;
 import com.sequenia.common.BaseViewHolder;
@@ -40,9 +42,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<BaseViewHolder<MovieR
         return movieList.size();
     }
 
-    public void updateItems(List<MovieResponse> items) {
+    public void updateItems(List<MovieResponse> newItems) {
         this.movieList.clear();
-        this.movieList.addAll(items);
-        notifyDataSetChanged();
+        this.movieList.addAll(newItems);
+    }
+
+    public List<MovieResponse> getData() {
+        return movieList;
     }
 }
