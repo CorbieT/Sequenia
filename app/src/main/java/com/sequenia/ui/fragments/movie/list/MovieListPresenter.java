@@ -71,29 +71,4 @@ public class MovieListPresenter implements MovieListContract.Presenter {
         view.openMovieInfoFragment(movie);
     }
 
-//    private class NetworkAsyncTask extends AsyncTask<MovieResponseCallback, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            networkRepository.query(new MovieResponseCallback() {
-//                @Override
-//                public void onSuccess(List<MovieResponse> response) {
-//                    movies = response;
-//                    view.updateSpinnerData(makeGenresList(response));
-//                    view.hideProgress();
-//                }
-//
-//                @Override
-//                public void onError(@NonNull Throwable throwable) {
-//
-//                }
-//            });
-//            return null;
-//        }
-//
-//        @Override
-//        protected Void doInBackground(MovieResponseCallback... movieResponseCallbacks) {
-//            return null;
-//        }
-//    }
 }

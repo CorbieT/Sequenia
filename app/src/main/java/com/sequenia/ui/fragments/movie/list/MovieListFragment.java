@@ -1,5 +1,6 @@
 package com.sequenia.ui.fragments.movie.list;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,10 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -112,7 +115,7 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
                                        View itemSelected, int selectedItemPosition, long selectedId) {
-
+                ((TextView) parent.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
                 presenter.onChooseGengre(data.get(selectedItemPosition));
             }
             public void onNothingSelected(AdapterView<?> parent) {
