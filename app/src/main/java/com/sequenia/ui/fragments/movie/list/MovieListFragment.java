@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,6 +41,9 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
 
     @BindView(R.id.spinner)
     Spinner spinner;
+
+    @BindView(R.id.progress)
+    ProgressBar progress;
 
     private Unbinder unbinder;
 
@@ -92,6 +96,16 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
         ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), android.R.layout.simple_dropdown_item_1line, data);
         spinner.setAdapter(adapter);
         setupSpinnerListener(data);
+    }
+
+    @Override
+    public void showProgress() {
+        progress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progress.setVisibility(View.GONE);
     }
 
     private void setupSpinnerListener(List<String> data) {

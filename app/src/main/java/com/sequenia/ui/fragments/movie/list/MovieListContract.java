@@ -9,6 +9,8 @@ public interface MovieListContract {
         void updateRecyclerData(List<MovieResponse> response);
         void openMovieInfoFragment(MovieResponse movie);
         void updateSpinnerData(List<String> data);
+        void showProgress();
+        void hideProgress();
     }
 
     interface Presenter {

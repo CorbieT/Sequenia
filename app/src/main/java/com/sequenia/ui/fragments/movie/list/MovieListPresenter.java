@@ -1,9 +1,8 @@
 package com.sequenia.ui.fragments.movie.list;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
+import com.sequenia.async.NetworkAsyncTask;
 import com.sequenia.model.response.MovieResponse;
 import com.sequenia.model.response.MovieResponseCallback;
 import com.sequenia.repositories.network.NetworkRepository;
@@ -23,14 +22,16 @@ public class MovieListPresenter implements MovieListContract.Presenter {
         this.view = view;
     }
 
-    //TODO create in other thread
+    //TODO refactor async
     @Override
     public void loadMovies() {
-        networkRepository.query(new MovieResponseCallback() {
+        view.showProgress();
+        new NetworkAsyncTask(networkRepository).execute(new MovieResponseCallback() {
             @Override
             public void onSuccess(List<MovieResponse> response) {
                 movies = response;
                 view.updateSpinnerData(makeGenresList(response));
+                view.hideProgress();
             }
 
             @Override
@@ -69,4 +70,30 @@ public class MovieListPresenter implements MovieListContract.Presenter {
     public void holderClick(MovieResponse movie) {
         view.openMovieInfoFragment(movie);
     }
+
+//    private class NetworkAsyncTask extends AsyncTask<MovieResponseCallback, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            networkRepository.query(new MovieResponseCallback() {
+//                @Override
+//                public void onSuccess(List<MovieResponse> response) {
+//                    movies = response;
+//                    view.updateSpinnerData(makeGenresList(response));
+//                    view.hideProgress();
+//                }
+//
+//                @Override
+//                public void onError(@NonNull Throwable throwable) {
+//
+//                }
+//            });
+//            return null;
+//        }
+//
+//        @Override
+//        protected Void doInBackground(MovieResponseCallback... movieResponseCallbacks) {
+//            return null;
+//        }
+//    }
 }
