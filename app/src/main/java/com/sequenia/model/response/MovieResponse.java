@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MovieResponse implements Parcelable {
 
     @SerializedName("id")

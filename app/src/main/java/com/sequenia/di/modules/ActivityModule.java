@@ -14,7 +14,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityModule {
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = {FragmentsModule.class})
     public abstract MainActivity mainActivity();
 
     @Binds

@@ -1,5 +1,6 @@
 package com.sequenia.di.modules.fragments;
 
+import com.sequenia.model.response.MovieResponse;
 import com.sequenia.ui.fragments.movie.info.MovieInfoContract;
 import com.sequenia.ui.fragments.movie.info.MovieInfoFragment;
 import com.sequenia.ui.fragments.movie.info.MovieInfoPresenter;
@@ -14,5 +15,5 @@ public abstract class MovieInfoModule {
     public abstract MovieInfoContract.Presenter providePresenter(MovieInfoPresenter presenter);
 
     @Binds
-    public abstract MovieInfoContract.View provideView(MovieInfoFragment view);
+    public abstract MovieInfoContract.View<MovieResponse> provideView(MovieInfoFragment view);
 }
