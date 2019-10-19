@@ -13,7 +13,6 @@ public class MovieInfoPresenter implements MovieInfoContract.Presenter {
     MovieInfoContract.View<MovieResponse> view;
     private MovieResponse movie;
 
-    @Inject
     public MovieInfoPresenter(MovieInfoContract.View<MovieResponse> view) {
         this.view = view;
     }

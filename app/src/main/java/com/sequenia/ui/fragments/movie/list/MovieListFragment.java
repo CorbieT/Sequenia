@@ -9,20 +9,23 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.App;
 import com.sequenia.R;
+import com.sequenia.di.components.DaggerFragmentComponent;
+import com.sequenia.di.modules.MovieListModule;
 import com.sequenia.model.response.MovieResponse;
 import com.sequenia.ui.fragments.BaseFragment;
 import com.sequenia.ui.fragments.movie.info.MovieInfoFragment;
 import com.sequenia.ui.fragments.movie.list.recycler.MovieListAdapter;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 
 public class MovieListFragment extends BaseFragment implements MovieListContract.View {
 
@@ -43,6 +46,16 @@ public class MovieListFragment extends BaseFragment implements MovieListContract
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_movie_list;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerFragmentComponent.builder()
+                .appComponent(App.get(Objects.requireNonNull(getActivity())).component())
+                .movieListModule(new MovieListModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override

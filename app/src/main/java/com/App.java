@@ -1,14 +1,31 @@
 package com;
 
-import com.sequenia.di.components.DaggerApplicationComponent;
+import android.app.Application;
+import android.content.Context;
 
-import dagger.android.AndroidInjector;
-import dagger.android.support.DaggerApplication;
 
-public class App extends DaggerApplication {
+import com.sequenia.di.components.AppComponent;
+import com.sequenia.di.components.DaggerAppComponent;
+import com.sequenia.di.modules.AppModule;
+import com.sequenia.di.modules.ContextModule;
+
+public class App extends Application {
+    private AppComponent component;
+
+    public static App get(Context context) {
+        return (App) context.getApplicationContext();
+    }
 
     @Override
-    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerApplicationComponent.builder().application(this).build();
+    public void onCreate() {
+        super.onCreate();
+        component = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .contextModule(new ContextModule(this))
+                .build();
+    }
+
+    public AppComponent component() {
+        return component;
     }
 }

@@ -1,17 +1,26 @@
 package com.sequenia.di.modules;
 
-import android.content.Context;
+import android.app.Application;
 
-import dagger.Binds;
+import com.App;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
-import dagger.Reusable;
-import dagger.android.support.DaggerApplication;
+import dagger.Provides;
 
 @Module
-public abstract class AppModule {
+public class AppModule {
 
-    @Binds
-    @Reusable
-    public abstract Context bindAppContext(DaggerApplication daggerApplication);
+    private App initApplication;
 
+    public AppModule(App initApplication) {
+        this.initApplication = initApplication;
+    }
+
+    @Provides
+    @Singleton
+    public Application provideApplication() {
+        return initApplication;
+    }
 }

@@ -16,20 +16,19 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment extends DaggerFragment {
+public abstract class BaseFragment extends Fragment {
 
-//    @Inject
-//    FragmentHandler fragmentHandler;
+    private FragmentHandler fragmentHandler;
 
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        try {
-//            fragmentHandler = (FragmentHandler) context;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(context.toString() + " must implement FragmentHandler");
-//        }
-//    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            fragmentHandler = (FragmentHandler) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement FragmentHandler");
+        }
+    }
 
     @Nullable
     @Override
@@ -40,10 +39,10 @@ public abstract class BaseFragment extends DaggerFragment {
     protected abstract int getLayoutId();
 
     protected void createFragment(Fragment fragment) {
-//        fragmentHandler.createFragment(fragment);
+        fragmentHandler.createFragment(fragment);
     }
 
     protected void createFragmentWithBackStack(Fragment fragment, String tag) {
-//        fragmentHandler.createFragmentWithBackStack(fragment, tag);
+        fragmentHandler.createFragmentWithBackStack(fragment, tag);
     }
 }

@@ -11,7 +11,7 @@ import com.sequenia.ui.fragments.movie.list.MovieListFragment;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends DaggerAppCompatActivity implements FragmentHandler {
+public class MainActivity extends AppCompatActivity implements FragmentHandler {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

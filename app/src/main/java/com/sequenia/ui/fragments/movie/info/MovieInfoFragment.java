@@ -1,6 +1,5 @@
 package com.sequenia.ui.fragments.movie.info;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -16,12 +15,10 @@ import com.sequenia.ui.fragments.BaseFragment;
 
 import java.util.Objects;
 
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 
 public class MovieInfoFragment extends BaseFragment implements MovieInfoContract.View<MovieResponse> {
 
@@ -44,7 +41,6 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
 
     private Unbinder unbinder;
 
-    @Inject
     MovieInfoContract.Presenter presenter;
 
     public static MovieInfoFragment newInstance(MovieResponse movie) {
@@ -63,7 +59,7 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        presenter = new MovieInfoPresenter(this);
+        presenter = new MovieInfoPresenter(this);
         unbinder = ButterKnife.bind(this, view);
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
 
