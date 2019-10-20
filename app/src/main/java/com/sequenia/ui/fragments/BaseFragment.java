@@ -12,10 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.sequenia.interfaces.FragmentHandler;
 
-import javax.inject.Inject;
-
-import dagger.android.support.DaggerFragment;
-
 public abstract class BaseFragment extends Fragment {
 
     private FragmentHandler fragmentHandler;

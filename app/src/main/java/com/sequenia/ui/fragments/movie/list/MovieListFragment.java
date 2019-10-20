@@ -2,18 +2,15 @@ package com.sequenia.ui.fragments.movie.list;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +22,6 @@ import com.sequenia.ui.fragments.BaseFragment;
 import com.sequenia.ui.fragments.movie.info.MovieInfoFragment;
 import com.sequenia.ui.fragments.movie.list.recycler.MovieListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

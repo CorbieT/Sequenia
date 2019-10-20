@@ -4,9 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.sequenia.model.response.MovieListResponse;
 import com.sequenia.model.response.MovieResponseCallback;
 import com.sequenia.services.NetworkServiceImpl;
-import com.sequenia.model.response.MovieListResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

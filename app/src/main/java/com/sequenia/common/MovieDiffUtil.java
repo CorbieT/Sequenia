@@ -1,7 +1,5 @@
 package com.sequenia.common;
 
-import androidx.recyclerview.widget.DiffUtil;
-
 import com.sequenia.model.response.MovieResponse;
 
 import java.util.List;

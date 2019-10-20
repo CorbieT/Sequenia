@@ -3,7 +3,6 @@ package com.sequenia.utils;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ListUtils {
     public static List<String> removeAllEquals(List<String> entryList) {

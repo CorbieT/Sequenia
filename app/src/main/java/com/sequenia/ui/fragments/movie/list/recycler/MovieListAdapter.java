@@ -4,13 +4,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sequenia.common.MovieDiffUtil;
-import com.sequenia.interfaces.Consumer;
 import com.sequenia.R;
 import com.sequenia.common.BaseViewHolder;
+import com.sequenia.interfaces.Consumer;
 import com.sequenia.model.response.MovieResponse;
 
 import java.util.ArrayList;

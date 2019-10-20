@@ -8,7 +8,6 @@ import com.sequenia.R;
 import com.sequenia.model.response.MovieResponse;
 import com.squareup.picasso.Picasso;
 
-
 import static com.sequenia.ui.fragments.movie.info.MovieInfoFragment.movieKey;
 
 public class MovieInfoPresenter implements MovieInfoContract.Presenter {
