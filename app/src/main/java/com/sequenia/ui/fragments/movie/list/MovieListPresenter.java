@@ -19,7 +19,6 @@ public class MovieListPresenter implements MovieListContract.Presenter {
         this.view = view;
     }
 
-    //TODO refactor async
     @Override
     public void loadMovies() {
         view.showProgress();

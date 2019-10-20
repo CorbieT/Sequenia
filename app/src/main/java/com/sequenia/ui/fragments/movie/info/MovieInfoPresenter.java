@@ -13,7 +13,6 @@ import static com.sequenia.ui.fragments.movie.info.MovieInfoFragment.movieKey;
 public class MovieInfoPresenter implements MovieInfoContract.Presenter {
 
     private MovieInfoContract.View<MovieResponse> view;
-    private MovieResponse movie;
 
     public MovieInfoPresenter(MovieInfoContract.View<MovieResponse> view) {
         this.view = view;
@@ -21,6 +20,7 @@ public class MovieInfoPresenter implements MovieInfoContract.Presenter {
 
     @Override
     public void loadBundle(Bundle bundle) {
+        MovieResponse movie = null;
         if (bundle != null) {
             movie = bundle.getParcelable(movieKey);
         }

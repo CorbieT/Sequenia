@@ -55,8 +55,7 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
 
     private Unbinder unbinder;
 
-    @Inject
-    MovieInfoContract.Presenter presenter;
+    private MovieInfoContract.Presenter presenter;
 
     public static MovieInfoFragment newInstance(MovieResponse movie) {
         Bundle args = new Bundle();
