@@ -19,8 +19,6 @@ import com.sequenia.ui.fragments.BaseFragment;
 
 import java.util.Objects;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -41,7 +39,7 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
     @BindView(R.id.description)
     TextView description;
 
-    @BindView(R.id.image)
+    @BindView(R.id.imageInfo)
     ImageView image;
 
     @BindView(R.id.toolbar)
@@ -73,8 +71,8 @@ public class MovieInfoFragment extends BaseFragment implements MovieInfoContract
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new MovieInfoPresenter(this);
         unbinder = ButterKnife.bind(this, view);
+        presenter = new MovieInfoPresenter(this);
         ((MainActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
         Objects.requireNonNull(((MainActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setTitle("");
         presenter.loadBundle(this.getArguments());
